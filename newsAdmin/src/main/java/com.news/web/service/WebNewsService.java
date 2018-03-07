@@ -1,15 +1,14 @@
 package com.news.web.service;
 
-import java.util.HashMap;
-import java.util.List;
-
-import javax.annotation.Resource;
-
+import com.news.web.mapper.WebNewsMapper;
+import com.news.web.pojo.Comment;
+import com.news.web.pojo.WebNews;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.news.web.mapper.WebNewsMapper;
-import com.news.web.pojo.WebNews;
+import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
 
 @Service
 @Transactional
@@ -47,5 +46,17 @@ public class WebNewsService {
     
 	public List<WebNews> listByPara(HashMap<Object,Object> para){
 		return newsMapper.listByPara(para);
+	}
+
+	public int addClickCount(Integer id) {
+		return newsMapper.addClickCount(id);
+	}
+
+	public int editStts(Integer id, Integer stts) {
+		return newsMapper.editStts(id, stts);
+	}
+
+	public void addComont(Comment comment) {
+		newsMapper.addComont(comment);
 	}
 }

@@ -89,17 +89,8 @@
 			<if test="createDate != null">
 				createDate,
 			</if>
-			<if test="createPersonName != null">
-				createPersonName,
-			</if>
 			<if test="createUserName != null">
 				createUserName,
-			</if>
-			<if test="createDeptId != null">
-				createDeptId,
-			</if>
-			<if test="createDeptName != null">
-				createDeptName,
 			</if>
 			<if test="imgUrl != null">
 				imgUrl,
@@ -130,17 +121,8 @@
 			<if test="createDate != null">
 				#{createDate,jdbcType=TIMESTAMP},
 			</if>
-			<if test="createPersonName != null">
-				#{createPersonName,jdbcType=VARCHAR},
-			</if>
 			<if test="createUserName != null">
 				#{createUserName,jdbcType=VARCHAR},
-			</if>
-			<if test="createDeptId != null">
-				#{createDeptId,jdbcType=INTEGER},
-			</if>
-			<if test="createDeptName != null">
-				#{createDeptName,jdbcType=VARCHAR},
 			</if>
 			<if test="imgUrl != null">
 				#{imgUrl,jdbcType=VARCHAR},
@@ -174,17 +156,8 @@
 			<if test="createDate != null">
 				createDate = #{createDate,jdbcType=TIMESTAMP},
 			</if>
-			<if test="createPersonName != null">
-				createPersonName = #{createPersonName,jdbcType=VARCHAR},
-			</if>
 			<if test="createUserName != null">
 				createUserName = #{createUserName,jdbcType=VARCHAR},
-			</if>
-			<if test="createDeptId != null">
-				createDeptId = #{createDeptId,jdbcType=INTEGER},
-			</if>
-			<if test="createDeptName != null">
-				createDeptName = #{createDeptName,jdbcType=VARCHAR},
 			</if>
 			<if test="imgUrl != null">
 				imgUrl = #{imgUrl,jdbcType=VARCHAR},
@@ -234,4 +207,49 @@
 		</where>
 		order by id
 	</select>
+
+	<update id="addClickCount" parameterType="java.lang.Integer">
+		update  webnews set clickCount = clickCount + 1 where id = #{id}
+	</update>
+	
+	<update id="editStts" parameterType="java.lang.Integer">
+		update  webnews set stts = #{stts} where id = #{id}
+	</update>
+
+	<insert id="addComont" parameterType="com.news.web.pojo.Comment">
+		<selectKey resultType="java.lang.Integer" keyProperty="cmtId"
+				   order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into commont
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				userId,
+			</if>
+			<if test="newsId != null">
+				newsId,
+			</if>
+			<if test="createDate != null">
+				createDate,
+			</if>
+			<if test="cmtContent != null">
+				cmtContent,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="newsId != null">
+				#{newsId,jdbcType=INTEGER},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cmtContent != null">
+				#{cmtContent,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+
+	</insert>
 </mapper>

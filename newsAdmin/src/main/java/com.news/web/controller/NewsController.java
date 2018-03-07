@@ -1,15 +1,15 @@
 package com.news.web.controller;
 
-import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.news.utils.ConfigProp;
+import com.news.utils.FileUpload;
+import com.news.utils.RequestUtil;
+import com.news.utils.comm.PagePara;
+import com.news.utils.comm.ResultInfo;
+import com.news.web.pojo.Comment;
+import com.news.web.pojo.WebNews;
+import com.news.web.service.WebNewsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,15 +18,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.news.utils.comm.PagePara;
-import com.news.utils.comm.ResultInfo;
-import com.news.utils.ConfigProp;
-import com.news.utils.FileUpload;
-import com.news.utils.RequestUtil;
-import com.news.web.pojo.WebNews;
-import com.news.web.service.WebNewsService;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/webNews")
@@ -178,4 +177,65 @@ public class NewsController {
 		}
 		return resultInfo;
 	}
+
+
+	@ResponseBody
+	@RequestMapping("/addClickCount")
+	public ResultInfo addClickCount() {
+		ResultInfo resultInfo = new ResultInfo(true, "添加成功");
+		Integer id = RequestUtil.getInteger(request, "id");
+		WebNews news = newsService.getWebNewsById(id);
+		if(news != null){
+			newsService.addClickCount(id);
+		}
+		return resultInfo;
+	}
+
+	@ResponseBody
+	@RequestMapping("/editStts")
+	public ResultInfo editStts() {
+		ResultInfo resultInfo = new ResultInfo(true, "修改成功");
+		Integer id = RequestUtil.getInteger(request, "id");
+		Integer stts = RequestUtil.getInteger(request, "stts");
+		WebNews news = newsService.getWebNewsById(id);
+		if(news != null && stts != null){
+			newsService.editStts(id, stts);
+		} else {
+			resultInfo.setSuccess(false);
+			resultInfo.setMsg("修改失败");
+		}
+		return resultInfo;
+	}
+
+	@ResponseBody
+	@RequestMapping("/addCommont")
+	public ResultInfo addCommont(Comment comment) {
+		ResultInfo resultInfo = new ResultInfo(true, "添加成功");
+		// TODO 判断评论是否包含名字词汇
+		boolean flag = true;
+		comment.setCreateDate(new Date());
+		if(flag){
+			newsService.addComont(comment);
+		} else {
+			resultInfo.setMsg("评论包含铭感词汇");
+			resultInfo.setSuccess(false);
+		}
+		return resultInfo;
+	}
+
+	@ResponseBody
+	@RequestMapping("/delCommont")
+	public ResultInfo delCommont() {
+		ResultInfo resultInfo = new ResultInfo(true, "添加成功");
+		Integer cmtId = RequestUtil.getInteger(request, "cmtId");
+		Comment cmt = newsService.getCommentById(cmtId);
+		if(cmt != null){
+			newsService.delCommont(cmtId);
+		} else {
+			resultInfo.setMsg("不存在");
+			resultInfo.setSuccess(false);
+		}
+		return resultInfo;
+	}
+
 }

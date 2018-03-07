@@ -1,8 +1,8 @@
 package com.news.web.pojo;
 
-import java.util.Date;
-
 import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 public class WebNews {
     private Integer id;
@@ -16,13 +16,7 @@ public class WebNews {
 
     private Date createDate;
 
-    private String createPersonName;
-
     private String createUserName;
-
-    private Integer createDeptId;
-
-    private String createDeptName;
 
     private String imgUrl;
 
@@ -74,13 +68,6 @@ public class WebNews {
         this.createDate = createDate;
     }
 
-    public String getCreatePersonName() {
-		return createPersonName;
-	}
-
-	public void setCreatePersonName(String createPersonName) {
-		this.createPersonName = createPersonName;
-	}
 
     public String getCreateUserName() {
         return createUserName;
@@ -88,22 +75,6 @@ public class WebNews {
 
     public void setCreateUserName(String createUserName) {
         this.createUserName = createUserName == null ? null : createUserName.trim();
-    }
-
-    public Integer getCreateDeptId() {
-        return createDeptId;
-    }
-
-    public void setCreateDeptId(Integer createDeptId) {
-        this.createDeptId = createDeptId;
-    }
-
-    public String getCreateDeptName() {
-        return createDeptName;
-    }
-
-    public void setCreateDeptName(String createDeptName) {
-        this.createDeptName = createDeptName == null ? null : createDeptName.trim();
     }
 
     public String getImgUrl() {

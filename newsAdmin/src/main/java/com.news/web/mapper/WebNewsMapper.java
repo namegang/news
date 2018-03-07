@@ -1,10 +1,11 @@
 package com.news.web.mapper;
 
+import com.news.platform.mybatis.MyBatisRepository;
+import com.news.web.pojo.Comment;
+import com.news.web.pojo.WebNews;
+
 import java.util.HashMap;
 import java.util.List;
-
-import com.news.platform.mybatis.MyBatisRepository;
-import com.news.web.pojo.WebNews;
 
 @MyBatisRepository
 public interface WebNewsMapper {
@@ -23,4 +24,10 @@ public interface WebNewsMapper {
     int updateById(WebNews record);
     
     List<WebNews> listByPara(HashMap<Object, Object> para);
+
+    int addClickCount(Integer id);
+
+    int editStts(Integer id, Integer stts);
+
+    void addComont(Comment comment);
 }
