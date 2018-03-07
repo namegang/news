@@ -252,4 +252,12 @@
 		</trim>
 
 	</insert>
+
+	<select id="getCommentById" parameterType="Integer" resultType="com.news.web.pojo.Comment">
+		select * from comment where cmtId = #{cmtId}
+	</select>
+
+	<delete id="delCommont" parameterType="Integer">
+		delete  from comment where cmtId = #{cmtId}
+	</delete>
 </mapper>

@@ -30,4 +30,8 @@ public interface WebNewsMapper {
     int editStts(Integer id, Integer stts);
 
     void addComont(Comment comment);
+
+    Comment getCommentById(Integer cmtId);
+
+    void delCommont(Integer cmtId);
 }

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.news.admin.pojo.SysDict;
 import com.news.admin.service.SysDictService;
 import com.news.utils.comm.PagePara;
 import com.news.utils.comm.ResultInfo;

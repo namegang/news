@@ -1,7 +1,5 @@
 package com.news.admin.service;
 
-import com.news.admin.mapper.SysFileMapper;
-import com.news.admin.pojo.SysFile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

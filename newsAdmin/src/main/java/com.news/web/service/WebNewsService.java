@@ -59,4 +59,12 @@ public class WebNewsService {
 	public void addComont(Comment comment) {
 		newsMapper.addComont(comment);
 	}
+
+	public Comment getCommentById(Integer cmtId) {
+		return newsMapper.getCommentById(cmtId);
+	}
+
+	public void delCommont(Integer cmtId) {
+		newsMapper.delCommont(cmtId);
+	}
 }

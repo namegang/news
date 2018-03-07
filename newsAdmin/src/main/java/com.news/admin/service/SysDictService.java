@@ -1,7 +1,5 @@
 package com.news.admin.service;
 
-import com.news.admin.mapper.SysDictMapper;
-import com.news.admin.pojo.SysDict;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

@@ -53,7 +53,6 @@ public class SysPowerController {
 	public ModelAndView save() {
 		ModelAndView mView = new ModelAndView("/sys/power/save");
 		Integer id = RequestUtil.getInteger(request, "id", 0);
-		Integer srgt = RequestUtil.getInteger(request, "srgt", 0);
 		Integer slevel = RequestUtil.getInteger(request, "slevel", 0);
 		String opType = RequestUtil.getString(request, "opType", "Parent");
 
@@ -63,7 +62,6 @@ public class SysPowerController {
 		}
 		mView.addObject("m", power);
 		mView.addObject("opType", opType);
-		mView.addObject("srgt", srgt);
 		mView.addObject("slevel", slevel);
 		return mView;
 	}

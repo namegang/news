@@ -10,14 +10,7 @@ import org.springframework.stereotype.Service;
 import com.news.web.mapper.WebFriendLinkMapper;
 import com.news.web.pojo.WebFriendLink;
 
-/**
-* @Title 说明
-* @description 描述
-* @author huishen
-* @version 1.0
-* @createAt 2017年12月18日 下午4:38:53
-* @Copyright: Copyright (c) 2017 bjsszt. All Rights Reserved
-*/
+
 @Service
 public class WebFriendLinkService {
 	@Resource
